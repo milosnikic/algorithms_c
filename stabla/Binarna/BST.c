@@ -74,6 +74,25 @@ void postfiksno(POKAZIVAC cvor){
   postfiksno(cvor->desno);
   printf("%d ", cvor->pdt);
 }
+
+/*
+Vraca veci od dva elementa
+*/
+int max(int a, int b){
+  return (a > b) ? a : b;
+}
+
+/*
+Dubina stabla
+*/
+int dubina(POKAZIVAC cvor){
+  if(cvor == NULL){
+    return 0;
+  }
+  return 1 + max(dubina(cvor->levo),dubina(cvor->desno));
+}
+
+
 int main(void) {
   POKAZIVAC koren = NULL;
   koren = ubaci(koren,50);
@@ -82,12 +101,17 @@ int main(void) {
   ubaci(koren,60);
   ubaci(koren,70);
   ubaci(koren,35);
+  ubaci(koren,40);
   // printf("%d",koren->levo->pdt);
+  printf("PREFIKSNO: ");
   prefiksno(koren);
   printf("\n");
+  printf("INFIKSNO: ");
   infiksno(koren);
   printf("\n");
+  printf("POSTFIKSNO: ");
   postfiksno(koren);
   printf("\n");
+  printf("Dubina stabla: %d",dubina(koren));
   return 0;
 }
